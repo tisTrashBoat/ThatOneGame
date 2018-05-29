@@ -4,7 +4,7 @@ class Ship():
         self.screen = screen
         self.ai_settings = ai_settings
         # Load the ship image and get its rect.
-        self.image = pygame.image.load('C:/Users/FPALA01/PycharmProjects/ThatOneGame/venv/Images/ship.bmp')
+        self.image = pygame.image.load('C:/Users/FPALA01/PycharmProjects/ThatOneGame/venv/Images/ship.bmp17157')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         # Start each new ship at the bottom center of the screen.
@@ -20,6 +20,11 @@ class Ship():
 def update(self):
     """Update the ship's position based on the movement flag."""
 
+    if self.moving_right:
+        self.rect.centerx += 1
+    if self.moving_left:
+        self.rect.centerx -= 1
+
     if self.moving_right and self.rect.right < self.screen_rect.right:
         self.center += self.ai_settings.ship_speed_factor
         self.rect.centerx += 1
@@ -28,6 +33,7 @@ def update(self):
         self.rect.centerx -= 1
     # Update rect object from self.center.
     self.rect.centerx = self.center
+
 
     def blitme(self):
         """Draw the ship at its current location."""
